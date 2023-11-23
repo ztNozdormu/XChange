@@ -36,4 +36,8 @@ public enum OkexCandleStickPeriodType {
   public String getFieldValue() {
     return fieldValue;
   }
+  public long getPeriodInSecs() {
+    return periodInSecs;
+  }
+
 }
