@@ -18,8 +18,8 @@ public abstract class Web3ServerMarketDataServiceRaw extends Web3ServerBaseServi
     super(exchange, resilienceRegistries);
   }
 
-  public Web3ServerResponse<Set<CandleStickDO>> getHistoryCandle(MkCandleStickBO candleStickBO)
+  public Set<CandleStickDO> getHistoryCandle(MkCandleStickBO candleStickBO)
       throws Web3ServerException, IOException {
-    return web3Server.getHistoryCandles(candleStickBO);
+    return web3Server.getHistoryCandles(candleStickBO).getData();
   }
 }

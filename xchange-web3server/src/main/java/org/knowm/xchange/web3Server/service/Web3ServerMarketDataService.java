@@ -28,7 +28,7 @@ public class Web3ServerMarketDataService extends Web3ServerMarketDataServiceRaw 
 
 
   @Override
-  public Web3ServerResponse<Set<CandleStickDO>> getHistoryCandle(MkCandleStickBO params) {
+  public Set<CandleStickDO> getHistoryCandle(MkCandleStickBO params) throws IOException {
 
     if (params == null) {
       throw new NotYetImplementedForExchangeException("Only DefaultCandleStickParam is supported");
@@ -39,7 +39,7 @@ public class Web3ServerMarketDataService extends Web3ServerMarketDataServiceRaw 
       throw new NotYetImplementedForExchangeException("Only discrete period values are supported;" +
               Arrays.toString(Web3ServerCandleStickPeriodType.getSupportedPeriodsInSecs()));
     }
-    return getHistoryCandle(params);
+    return super.getHistoryCandle(params);
   }
 
 
