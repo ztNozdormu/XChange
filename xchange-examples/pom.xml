@@ -213,6 +213,12 @@
 			<artifactId>xchange-okex</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<!-- XChange Web3Server exchange support -->
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>xchange-web3server</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 		<!-- XChange Bleutrade exchange support -->
 		<dependency>
 			<groupId>${project.groupId}</groupId>

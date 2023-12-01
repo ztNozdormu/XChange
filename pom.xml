@@ -178,7 +178,7 @@
     <module>xchange-yobit</module>
     <module>xchange-zaif</module>
     <module>xchange-enigma</module>
-
+    <module>xchange-web3server</module>
 
     <module>xchange-stream-bankera</module>
     <module>xchange-stream-binance</module>
@@ -210,7 +210,7 @@
     <module>xchange-stream-service-pubnub</module>
     <module>xchange-stream-coincheck</module>
     <module>xchange-stream-krakenfutures</module>
-      <module>xchange-web3server</module>
+
   </modules>
 
   <ciManagement>
