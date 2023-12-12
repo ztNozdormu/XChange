@@ -2,13 +2,16 @@ package org.knowm.xchange.web3Server.service;
 
 import org.knowm.xchange.client.ResilienceRegistries;
 import org.knowm.xchange.web3Server.Web3ServerExchange;
-import org.knowm.xchange.web3Server.dto.Web3ServerException;
-import org.knowm.xchange.web3Server.dto.Web3ServerResponse;
 import org.knowm.xchange.web3Server.dto.web3.CandleStickDO;
-import org.knowm.xchange.web3Server.service.params.MkCandleStickBO;
+import org.knowm.xchange.web3Server.service.params.MkCandleStickDTO;
 
 import java.io.IOException;
+import java.util.Comparator;
+import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
+
+import static java.util.Collections.EMPTY_SET;
 
 
 /** Author: Max Gao (gaamox@tutanota.com) Created: 08-06-2021 */
@@ -18,8 +21,24 @@ public abstract class Web3ServerMarketDataServiceRaw extends Web3ServerBaseServi
     super(exchange, resilienceRegistries);
   }
 
-  public Set<CandleStickDO> getHistoryCandle(MkCandleStickBO candleStickBO)
-      throws Web3ServerException, IOException {
-    return web3Server.getHistoryCandles(candleStickBO).getData();
-  }
+//  public Set<CandleStickDO> getHistoryCandle(MkCandleStickBO candleStickBO)
+//      throws Web3ServerException, IOException {
+//    Date startDate = candleStickBO.getStartDate();
+//    Date endDate = candleStickBO.getEndDate();
+//    String periodType = candleStickBO.periodType.toString();
+//    String exchangeType = candleStickBO.getExchangeType();
+//    String currencyPair = candleStickBO.getCurrencyPair().toString();
+//
+//    return web3Server.getHistoryCandles(startDate,endDate,periodType,exchangeType,currencyPair).getData();
+//  }
+    public Set<CandleStickDO> getHistoryCandle(MkCandleStickDTO candleStickDTO) {
+        Set<CandleStickDO> candleStickDOSet;
+        try {
+            candleStickDOSet = web3Server.getHistoryCandles(candleStickDTO).getData();
+            candleStickDOSet = candleStickDOSet.stream().sorted(Comparator.comparing(CandleStickDO::getTsTime)).collect(Collectors.toCollection(LinkedHashSet::new));
+        } catch (IOException e) {
+            candleStickDOSet = EMPTY_SET;
+        }
+        return candleStickDOSet;
+    }
 }

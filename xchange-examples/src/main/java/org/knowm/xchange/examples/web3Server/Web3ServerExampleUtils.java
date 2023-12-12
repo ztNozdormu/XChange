@@ -2,7 +2,6 @@ package org.knowm.xchange.examples.web3Server;
 
 import org.knowm.xchange.Exchange;
 import org.knowm.xchange.ExchangeFactory;
-import org.knowm.xchange.okex.OkexExchange;
 import org.knowm.xchange.web3Server.Web3ServerExchange;
 
 public class Web3ServerExampleUtils {

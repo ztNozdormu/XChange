@@ -58,9 +58,9 @@ public class Web3ServerExchange extends BaseExchange {
   public ExchangeSpecification getDefaultExchangeSpecification() {
 
     ExchangeSpecification exchangeSpecification = new ExchangeSpecification(this.getClass());
-    exchangeSpecification.setSslUri("https://www.okx.com");
-    exchangeSpecification.setHost("okx.com");
-    exchangeSpecification.setPort(80);
+    exchangeSpecification.setSslUri("http://localhost:19001/");
+    exchangeSpecification.setHost("http://localhost:19001/");
+    exchangeSpecification.setPort(19001);
     exchangeSpecification.setExchangeName("Web3Server");
     exchangeSpecification.setExchangeDescription("Web3Server Exchange");
 

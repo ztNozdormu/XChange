@@ -6,9 +6,8 @@ import org.knowm.xchange.exceptions.NotYetImplementedForExchangeException;
 import org.knowm.xchange.instrument.Instrument;
 import org.knowm.xchange.service.marketdata.MarketDataService;
 import org.knowm.xchange.web3Server.Web3ServerExchange;
-import org.knowm.xchange.web3Server.dto.Web3ServerResponse;
 import org.knowm.xchange.web3Server.dto.web3.CandleStickDO;
-import org.knowm.xchange.web3Server.service.params.MkCandleStickBO;
+import org.knowm.xchange.web3Server.service.params.MkCandleStickDTO;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -28,7 +27,7 @@ public class Web3ServerMarketDataService extends Web3ServerMarketDataServiceRaw 
 
 
   @Override
-  public Set<CandleStickDO> getHistoryCandle(MkCandleStickBO params) throws IOException {
+  public Set<CandleStickDO> getHistoryCandle(MkCandleStickDTO params) {
 
     if (params == null) {
       throw new NotYetImplementedForExchangeException("Only DefaultCandleStickParam is supported");
@@ -41,6 +40,5 @@ public class Web3ServerMarketDataService extends Web3ServerMarketDataServiceRaw 
     }
     return super.getHistoryCandle(params);
   }
-
 
 }

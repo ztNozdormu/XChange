@@ -1,7 +1,13 @@
 package org.knowm.xchange.web3Server.dto.web3;
 
-import lombok.*;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.ZonedDateTimeSerializer;
+import lombok.Data;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.knowm.xchange.web3Server.config.ZonedDateTimeDeserializer;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -11,23 +17,17 @@ import java.util.Objects;
 
 /**
  * Imported candles (map "IMPORTED_CANDLES" table).
- * 与clickhouse统一下 TODO
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
-@ToString(callSuper = true)
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 public class CandleStickDO {
 
-    /** Backtesting market name */
+    /** Backtesting market name. */
     private String exchangeType;
 
-    /** @link OkexCandleStickPeriodType */
-    private String PeriodType;
+    /**  OkexCandleStickPeriodType.*/
+    private String periodType;
 
-    /** @link OkexCandleStickPeriodType 分钟单位 */
+    /** @link OkexCandleStickPeriodType 分钟单位 .*/
     private long periodMinutes;
 
     /** The currency-pair. Backtesting candle id.*/
@@ -47,27 +47,32 @@ public class CandleStickDO {
 
     /** Volume of trading activity during the bucket interval. */
     private BigDecimal volume;
-
+    /** Volume of trading activity during the bucket interval. */
     private  String quotaVolume;
-
+    /** Volume of trading activity during the bucket interval. */
     private  String vwap; // these 5 fields can be null if not provided by the exchange
-
+    /** Volume of trading activity during the bucket interval. */
     private  String bid;
-
+    /** Volume of trading activity during the bucket interval. */
     private  String bidSize;
-
+    /** Volume of trading activity during the bucket interval. */
     private  String ask;
-
+    /** Volume of trading activity during the bucket interval. */
     private  String askSize;
 
     /** Bucket start time. */
+    @JsonSerialize(using = ZonedDateTimeSerializer.class)
+    @JsonDeserialize(using = ZonedDateTimeDeserializer.class)
     private ZonedDateTime tsTime;
 
-    /** time string */
+    /** time string.*/
     private String tsTimeStr;
 
-    /** Bucket start time. */
+    /** Bucket start time.*/
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     private LocalDateTime createTime;
+
 
     @Override
     public final boolean equals(final Object o) {
