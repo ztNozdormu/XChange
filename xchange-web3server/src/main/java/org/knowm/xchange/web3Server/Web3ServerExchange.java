@@ -70,7 +70,7 @@ public class Web3ServerExchange extends BaseExchange {
   @Override
   public SynchronizedValueFactory<Long> getNonceFactory() {
     throw new UnsupportedOperationException(
-        "Okex uses timestamp rather than a nonce"); // TODO: This
+        "Web3Server uses timestamp rather than a nonce"); // TODO: This
   }
 
   @Override
@@ -83,6 +83,5 @@ public class Web3ServerExchange extends BaseExchange {
 
   @Override
   public void remoteInit() {
-
   }
 }
