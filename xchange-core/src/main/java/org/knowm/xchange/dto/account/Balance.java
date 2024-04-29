@@ -240,7 +240,11 @@ public final class Balance implements Comparable<Balance>, Serializable {
   public BigDecimal getTotal() {
 
     if (total == null) {
-      return available.add(frozen).subtract(borrowed).add(loaned).add(withdrawing).add(depositing);
+      if(available==null){
+        return BigDecimal.ZERO.add(frozen).subtract(borrowed).add(loaned).add(withdrawing).add(depositing);
+      }else{
+        return available.add(frozen).subtract(borrowed).add(loaned).add(withdrawing).add(depositing);
+      }
     } else {
       return total;
     }
@@ -254,12 +258,16 @@ public final class Balance implements Comparable<Balance>, Serializable {
   public BigDecimal getAvailable() {
 
     if (available == null) {
-      return total
-          .subtract(frozen)
-          .subtract(loaned)
-          .add(borrowed)
-          .subtract(withdrawing)
-          .subtract(depositing);
+      if(total==null){
+        return BigDecimal.ZERO;
+      }else{
+        return total
+                .subtract(frozen)
+                .subtract(loaned)
+                .add(borrowed)
+                .subtract(withdrawing)
+                .subtract(depositing);
+      }
     } else {
       return available;
     }
