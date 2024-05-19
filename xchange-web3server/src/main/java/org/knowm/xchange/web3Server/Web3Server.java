@@ -29,6 +29,6 @@ public interface Web3Server {
   @POST
   @Path("/periodLastCandle")
   @Consumes(MediaType.APPLICATION_JSON)
-  Web3ServerResponse<CandleStickDO> getPeriodLastCandle(MkLastCandleStickDTO lastCandleStickDTO)
+  Web3ServerResponse<Set<CandleStickDO>> getPeriodLastCandle(MkLastCandleStickDTO lastCandleStickDTO)
           throws IOException;
 }

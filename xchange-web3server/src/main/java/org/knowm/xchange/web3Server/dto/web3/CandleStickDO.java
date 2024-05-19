@@ -12,6 +12,7 @@ import org.knowm.xchange.web3Server.config.ZonedDateTimeDeserializer;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
+import java.util.Date;
 import java.util.Objects;
 
 
@@ -61,9 +62,9 @@ public class CandleStickDO {
     private  String askSize;
 
     /** Bucket start time. */
-    @JsonSerialize(using = ZonedDateTimeSerializer.class)
-    @JsonDeserialize(using = ZonedDateTimeDeserializer.class)
-    private ZonedDateTime tsTime;
+//    @JsonSerialize(using = ZonedDateTimeSerializer.class)
+//    @JsonDeserialize(using = ZonedDateTimeDeserializer.class)
+    private Date tsTime;
 
     /** time string.*/
     private String tsTimeStr;

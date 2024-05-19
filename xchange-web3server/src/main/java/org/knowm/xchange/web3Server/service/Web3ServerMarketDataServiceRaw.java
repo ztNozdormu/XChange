@@ -37,7 +37,8 @@ public abstract class Web3ServerMarketDataServiceRaw extends Web3ServerBaseServi
     public CandleStickDO getPeriodLastCandle(MkLastCandleStickDTO lastCandleStickDTO){
 
         try {
-            return web3Server.getPeriodLastCandle(lastCandleStickDTO).getData();
+            Set<CandleStickDO> candleStickDOS = web3Server.getPeriodLastCandle(lastCandleStickDTO).getData();
+            return !candleStickDOS.isEmpty()?candleStickDOS.stream().collect(Collectors.toList()).get(0):null;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
