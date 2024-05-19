@@ -43,8 +43,7 @@ public class Web3ServerMarketDataService extends Web3ServerMarketDataServiceRaw 
   }
   @Override
   public CandleStickDO getPeriodLastCandle(MkLastCandleStickDTO lastCandleStickDTO) {
-    CandleStickDO candleStickDO = super.getPeriodLastCandle(lastCandleStickDTO);
-    return candleStickDO;
+    return super.getPeriodLastCandle(lastCandleStickDTO);
   }
 
 }
