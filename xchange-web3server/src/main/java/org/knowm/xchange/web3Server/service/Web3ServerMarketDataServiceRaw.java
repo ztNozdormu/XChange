@@ -2,8 +2,10 @@ package org.knowm.xchange.web3Server.service;
 
 import org.knowm.xchange.client.ResilienceRegistries;
 import org.knowm.xchange.web3Server.Web3ServerExchange;
+import org.knowm.xchange.web3Server.dto.Web3ServerException;
 import org.knowm.xchange.web3Server.dto.web3.CandleStickDO;
 import org.knowm.xchange.web3Server.service.params.MkCandleStickDTO;
+import org.knowm.xchange.web3Server.service.params.MkLastCandleStickDTO;
 
 import java.io.IOException;
 import java.util.Comparator;
@@ -21,16 +23,6 @@ public abstract class Web3ServerMarketDataServiceRaw extends Web3ServerBaseServi
     super(exchange, resilienceRegistries);
   }
 
-//  public Set<CandleStickDO> getHistoryCandle(MkCandleStickBO candleStickBO)
-//      throws Web3ServerException, IOException {
-//    Date startDate = candleStickBO.getStartDate();
-//    Date endDate = candleStickBO.getEndDate();
-//    String periodType = candleStickBO.periodType.toString();
-//    String exchangeType = candleStickBO.getExchangeType();
-//    String currencyPair = candleStickBO.getCurrencyPair().toString();
-//
-//    return web3Server.getHistoryCandles(startDate,endDate,periodType,exchangeType,currencyPair).getData();
-//  }
     public Set<CandleStickDO> getHistoryCandle(MkCandleStickDTO candleStickDTO) {
         Set<CandleStickDO> candleStickDOSet;
         try {
@@ -40,5 +32,14 @@ public abstract class Web3ServerMarketDataServiceRaw extends Web3ServerBaseServi
             candleStickDOSet = EMPTY_SET;
         }
         return candleStickDOSet;
+    }
+
+    public CandleStickDO getPeriodLastCandle(MkLastCandleStickDTO lastCandleStickDTO){
+
+        try {
+            return web3Server.getPeriodLastCandle(lastCandleStickDTO).getData();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

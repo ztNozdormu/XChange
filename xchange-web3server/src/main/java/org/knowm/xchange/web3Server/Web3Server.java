@@ -4,6 +4,7 @@ package org.knowm.xchange.web3Server;
 import org.knowm.xchange.web3Server.dto.Web3ServerResponse;
 import org.knowm.xchange.web3Server.dto.web3.CandleStickDO;
 import org.knowm.xchange.web3Server.service.params.MkCandleStickDTO;
+import org.knowm.xchange.web3Server.service.params.MkLastCandleStickDTO;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -23,5 +24,11 @@ public interface Web3Server {
   @Path("/historyCandles")
   @Consumes(MediaType.APPLICATION_JSON)
   Web3ServerResponse<Set<CandleStickDO>> getHistoryCandles(MkCandleStickDTO candleStickBO)
+          throws IOException;
+
+  @POST
+  @Path("/periodLastCandle")
+  @Consumes(MediaType.APPLICATION_JSON)
+  Web3ServerResponse<CandleStickDO> getPeriodLastCandle(MkLastCandleStickDTO lastCandleStickDTO)
           throws IOException;
 }

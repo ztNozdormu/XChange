@@ -8,6 +8,7 @@ import org.knowm.xchange.service.marketdata.MarketDataService;
 import org.knowm.xchange.web3Server.Web3ServerExchange;
 import org.knowm.xchange.web3Server.dto.web3.CandleStickDO;
 import org.knowm.xchange.web3Server.service.params.MkCandleStickDTO;
+import org.knowm.xchange.web3Server.service.params.MkLastCandleStickDTO;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -39,6 +40,11 @@ public class Web3ServerMarketDataService extends Web3ServerMarketDataServiceRaw 
               Arrays.toString(Web3ServerCandleStickPeriodType.getSupportedPeriodsInSecs()));
     }
     return super.getHistoryCandle(params);
+  }
+  @Override
+  public CandleStickDO getPeriodLastCandle(MkLastCandleStickDTO lastCandleStickDTO) {
+
+    return super.getPeriodLastCandle(lastCandleStickDTO);
   }
 
 }
